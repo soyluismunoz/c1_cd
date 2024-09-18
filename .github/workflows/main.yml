@@ -15,7 +15,7 @@ on:
 
        
 jobs:
-  detect-branch:                       
+   detect-branch:                       
      runs-on: ubuntu-latest            
 
      steps:
@@ -29,3 +29,13 @@ jobs:
        - name: Say Hello Main
          if: ${{ github.ref == 'refs/heads/main' }}
          run: echo "Hello, main!"
+
+   detect-pr:
+      runs-on: ubuntu-latest
+      steps:
+         - name: Get your code
+           uses: actions/checkout@v4
+
+         - name: PR
+           if: github.event_name == 'pull_request'
+           run: echo "hello pull request"
